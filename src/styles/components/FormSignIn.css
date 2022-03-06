@@ -7,8 +7,35 @@ h3 {
   font-weight: bold;
 }
 
+@font-face {
+  font-family: Atomic Age;
+  src: url("../../assets/fonts/AtomicAge-Regular.ttf");
+}
+
+@font-face {
+  font-family: ASAP;
+  src: url("../../assets/fonts/Asap-VariableFont_wght.ttf");
+}
+
+.icon-app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #fec63d;
+  margin: 1em 0em;
+}
+
+.title-app {
+  font-family: "Atomic Age";
+  font-size: 36px;
+}
+
 .text-color {
   color: #00e08e;
+  font-family: "ASAP";
   font-weight: bold;
 }
 
