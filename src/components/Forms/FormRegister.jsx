@@ -15,7 +15,7 @@ const FormRegister = () => {
 
   return (
     <div className="container">
-      <div>
+      <div className="my-4">
         <h4>Sign Up</h4>
       </div>
       <div className="row">
@@ -27,7 +27,7 @@ const FormRegister = () => {
           <p className="my-1 text-color">Password</p>
           <Input fullWidth type="password"></Input>
         </div>
-        <div className="col-12 mt-4">
+        <div className="col-12 mt-5">
           <div className="d-flex align-items-center">
             <Checkbox
               checked={secondary}
@@ -46,7 +46,7 @@ const FormRegister = () => {
           </Link>
         </div>
         <div className="col-12 d-flex justify-content-center">
-          <div className="d-flex mt-4">
+          <div className="d-flex mt-5">
             <p className="mx-2">Have an Account ?</p>
             <Link to={"/"}>
               <span className="text-color">Sign In</span>
