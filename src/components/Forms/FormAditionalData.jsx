@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-
-// link
-import { Link } from "react-router-dom";
+import { Controller } from "react-hook-form";
 
 // ui
 import Input from "@mui/material/Input";
@@ -9,6 +7,7 @@ import MobileDatePicker from "@mui/lab/MobileDatePicker";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import TextField from "@mui/material/TextField";
+import FormControl from "@mui/material/FormControl";
 
 // icons
 import { AiOutlineArrowLeft } from "react-icons/ai";
@@ -32,34 +31,67 @@ const countries = [
   },
 ];
 
-const FormAditionalData = () => {
+const FormAditionalData = ({
+  control,
+  errors,
+  setFormTwo,
+  country,
+  setCountry,
+}) => {
   const [value, setValue] = useState(new Date("2014-08-18T21:11:54"));
-  const [country, setCountry] = useState("");
 
   const handleChange = (event) => {
     setCountry(event.target.value);
   };
 
   return (
-    <div className="container">
-      <Link to={"/register"}>
-        <div>
-          <AiOutlineArrowLeft className="icon-row" />
-        </div>
-      </Link>
+    <div>
+      <div onClick={() => setFormTwo(false)}>
+        <AiOutlineArrowLeft className="icon-row" />
+      </div>
       <div className="my-3">
         <h4>Register</h4>
       </div>
       <div className="row">
         <div className="col-12">
           <p className="my-1 text-color">Name</p>
-          <Input fullWidth></Input>
-        </div>
-        <div className="col-12 mt-4">
+          <Controller
+            rules={{ required: true }}
+            control={control}
+            name="name"
+            error={errors.name}
+            render={({ field }) => (
+              <FormControl fullWidth>
+                <TextField
+                  {...field}
+                  id="user_name"
+                  error={errors.name}
+                  autoComplete="current-password"
+                  variant="standard"
+                />
+              </FormControl>
+            )}
+          />
+
           <p className="my-1 text-color">Lastname</p>
-          <Input fullWidth></Input>
-        </div>
-        <div className="col-12 mt-4">
+          <Controller
+            rules={{ required: true }}
+            control={control}
+            name="Lastname"
+            error={errors.Lastname}
+            render={({ field }) => (
+              <FormControl fullWidth>
+                <TextField
+                  {...field}
+                  id="user_Lastname"
+                  error={errors.Lastname}
+                  autoComplete="current-password"
+                  variant="standard"
+                />
+              </FormControl>
+            )}
+          />
+
           <p className="my-1 text-color">Birthday</p>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <MobileDatePicker
@@ -70,16 +102,31 @@ const FormAditionalData = () => {
               renderInput={(params) => <Input fullWidth {...params} />}
             />
           </LocalizationProvider>
-        </div>
-        <div className="col-12 mt-4">
+
           <p className="my-1 text-color">Address</p>
-          <Input fullWidth></Input>
-        </div>
-        <div className="col-12 mt-4">
+          <Controller
+            rules={{ required: true }}
+            control={control}
+            name="address"
+            error={errors.address}
+            render={({ field }) => (
+              <FormControl fullWidth>
+                <TextField
+                  {...field}
+                  id="user_address"
+                  error={errors.address}
+                  autoComplete="current-password"
+                  variant="standard"
+                />
+              </FormControl>
+            )}
+          />
+
           <p className="my-1 text-color">Country</p>
           <TextField
             select
             fullWidth
+            error={errors.country}
             value={country}
             onChange={handleChange}
             SelectProps={{
@@ -95,9 +142,9 @@ const FormAditionalData = () => {
           </TextField>
         </div>
         <div className="col-12 mt-4">
-          <Link to={"/"}>
-            <button className="button-sign">Sign In</button>
-          </Link>
+          <button type="submit" className="button-sign">
+            Join Now!
+          </button>
         </div>
       </div>
     </div>
