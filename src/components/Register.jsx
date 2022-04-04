@@ -1,45 +1,55 @@
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 // link
 import { Link } from "react-router-dom";
-import { app } from "../../firebase/configFirebase";
 
 // css
-import "../../styles/components/FormSignIn.css";
+import "../styles/components/FormSignIn.css";
 
 // ui
 import TextField from "@mui/material/TextField";
 import Checkbox from "@mui/material/Checkbox";
 import FormControl from "@mui/material/FormControl";
 
-// components
-import FormAditionalData from "../Forms/FormAditionalData";
+import { auth } from "../firebase/configFirebase";
 
-const FormRegister = () => {
+// components
+import FormAditionalData from "./Forms/FormAditionalData";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
+const Register = () => {
+  const navigate = useNavigate();
+
   const [secondary, setSecondary] = useState(false);
   const [formTwo, setFormTwo] = useState(false);
   const [country, setCountry] = useState("");
+
+  const [error, setError] = useState("");
+
   const {
     control,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
-  const onSubmit = (value) => {
-    const correo = value.email;
-    const password = value.password;
-
-    app
-      .auth()
-      .createUserWithEmailAndPassword(correo, password)
-      .then((usuarioFirebase) => {
-        console.log("usuario creado:", usuarioFirebase);
+  const onSubmit = async (value) => {
+    setError("");
+    createUserWithEmailAndPassword(auth, value.email, value.password)
+      .then(({ data }) => {
+        console.log(data);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(err.message);
       });
   };
 
   return (
     <div className="container">
+      {error && <p>{error}</p>}
       <form onSubmit={handleSubmit(onSubmit)}>
         {formTwo ? (
           <FormAditionalData
@@ -131,4 +141,4 @@ const FormRegister = () => {
   );
 };
 
-export default FormRegister;
+export default Register;
