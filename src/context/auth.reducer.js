@@ -1,5 +1,7 @@
+const isBrowser = typeof window !== "undefined";
+
 export const initialState = {
-  user: null,
+  user: isBrowser ? sessionStorage.getItem("LOGIN") : {},
   signup: null,
 };
 
