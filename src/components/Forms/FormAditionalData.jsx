@@ -59,7 +59,6 @@ const FormAditionalData = ({
             rules={{ required: true }}
             control={control}
             name="name"
-            error={errors.name}
             render={({ field }) => (
               <FormControl fullWidth>
                 <TextField
@@ -78,7 +77,6 @@ const FormAditionalData = ({
             rules={{ required: true }}
             control={control}
             name="Lastname"
-            error={errors.Lastname}
             render={({ field }) => (
               <FormControl fullWidth>
                 <TextField
@@ -108,7 +106,6 @@ const FormAditionalData = ({
             rules={{ required: true }}
             control={control}
             name="address"
-            error={errors.address}
             render={({ field }) => (
               <FormControl fullWidth>
                 <TextField

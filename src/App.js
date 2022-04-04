@@ -2,18 +2,25 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Layout/Layout";
 
-import FormRegister from "./components/Forms/FormRegister";
-import FormSignIn from "./components/Forms/FormSignIn";
+// context
+import { AuthProvider } from "./context/auth.provider";
+
+import Login from "./components/Login";
+import Home from "./components/Home";
+import Register from "./components/Register";
 
 function App() {
   return (
     <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<FormSignIn />} />
-          <Route path="/register" element={<FormRegister />} />
-        </Routes>
-      </Layout>
+      <AuthProvider>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </Layout>
+      </AuthProvider>
     </BrowserRouter>
   );
 }
