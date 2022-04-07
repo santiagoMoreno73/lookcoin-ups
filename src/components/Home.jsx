@@ -7,13 +7,15 @@ import { AuthContext } from "../context/auth.provider";
 import { ListCoins } from "../services/Coins";
 
 // ui
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
 import TextField from "@mui/material/TextField";
+import Divider from "@mui/material/Divider";
+import "../styles/components/Home.css";
+
+// icons
+import { MdGpsFixed } from "react-icons/md";
+
+// components
+import TableCoins from "./Shared/TableCoins";
 
 const Home = () => {
   const {
@@ -23,70 +25,42 @@ const Home = () => {
   const [coins, setCoins] = useState([]);
 
   useEffect(() => {
-    ListCoins().then(({ data }) => {
-      console.log(data);
-      setCoins(data);
-    });
+    ListCoins()
+      .then(({ data }) => {
+        setCoins(data);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
-    <div>
-      <h1>Home</h1>
+    <div className="container">
+      <h3>Home</h3>
       <h5>Welcome {user.email}</h5>
-      <TextField
-        id="search"
-        className="mb-3"
-        variant="standard"
-        placeholder="search"
-      />
-      <div className="d-flex justify-content-between">
-        <button className="button-sign">Coins</button>
-        <button className="button-sign">Last statistics</button>
+      <div className="col-12 d-flex mb-5 justify-content-center mt-4">
+        <TextField
+          fullWidth
+          id="search_coin"
+          variant="outlined"
+          label="Search"
+        />
       </div>
-      <div>
-        <h3>Top Currencys</h3>
-        <h4>State of the market</h4>
+      <div className="d-flex justify-content-between mb-4">
+        <button className="button-coins">Coins</button>
+        <button className="button-last_statics">Last statistics</button>
+      </div>
+      <div className="d-flex align-items-center my-2">
+        <MdGpsFixed style={{ color: "#00e08e", fontSize: "30px" }} />
+        <h5>Top Currencys</h5>
+      </div>
+      <Divider variant="fullWidth" />
+      <div className="card-market">
+        <h5 className="mb-2">State of the market</h5>
         <p>
           Total crypto market cap is $1.94, wich is up +2.96% over the last day.
         </p>
       </div>
-      <TableContainer>
-        <Table size="small" aria-label="a dense table">
-          <TableHead>
-            <TableRow>
-              <TableCell>#</TableCell>
-              <TableCell align="left">Coin</TableCell>
-              <TableCell align="left">MCAP</TableCell>
-              <TableCell align="right">Price</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {coins.map((coin, index) => (
-              <TableRow key={index}>
-                <TableCell align="right">{index}</TableCell>
-                <TableCell component="th" scope="row">
-                  {coin.name}
-                </TableCell>
-                <TableCell align="right">
-                  <div className="d-flex">
-                    <img
-                      style={{
-                        width: 28,
-                        height: 28,
-                        margin: "0em 2em 0em 0em",
-                      }}
-                      src={coin.image}
-                      alt="Coin_image"
-                    />
-                    <p>{coin.name}</p>
-                  </div>
-                </TableCell>
-                <TableCell align="right">{coin.current_price}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+
+      <TableCoins coins={coins} />
     </div>
   );
 };
