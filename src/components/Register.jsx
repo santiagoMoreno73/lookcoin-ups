@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 // css
-import "../styles/components/FormSignIn.css";
+import "../styles/components/Register.css";
 
 // ui
 import TextField from "@mui/material/TextField";

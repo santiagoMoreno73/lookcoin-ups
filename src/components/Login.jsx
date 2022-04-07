@@ -1,10 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 // css
-import "../styles/components/FormSignIn.css";
+import "../styles/components/Register.css";
 
 // icons
 import { MdAttachMoney } from "react-icons/md";
@@ -16,11 +16,9 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 
 // context
 import { auth } from "../firebase/configFirebase";
-import { AuthContext } from "../context/auth.provider";
 
 const FormSignIn = () => {
   const navigate = useNavigate();
-  const { dispatch } = useContext(AuthContext);
 
   const {
     control,
