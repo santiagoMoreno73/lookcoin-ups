@@ -1,3 +1,22 @@
+a {
+  text-decoration: none;
+}
+
+h3 {
+  color: #00e08e;
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Atomic Age;
+  src: url("../../assets/fonts/AtomicAge-Regular.ttf");
+}
+
+@font-face {
+  font-family: ASAP;
+  src: url("../../assets/fonts/Asap-VariableFont_wght.ttf");
+}
+
 .Main {
   display: flex;
   padding: 2em 1.5em;

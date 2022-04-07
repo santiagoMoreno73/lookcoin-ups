@@ -1,0 +1,43 @@
+h5 {
+  margin: 0px;
+}
+
+.button-coins {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 135px;
+  height: 36px;
+  padding: 8px 8px 8px 8px;
+  background: #d1f8ec;
+  border-color: #00e08e;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 2px 2px 2px 2px;
+}
+
+.button-last_statics {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 135px;
+  height: 36px;
+  padding: 8px 8px 8px 8px;
+  background: #ffffff;
+  border-color: #00e08e;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 2px 2px 2px 2px;
+}
+
+.card-market {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  height: auto;
+  margin: 1.2em 0em;
+  padding: 18px 40px 18px 40px;
+  box-shadow: 0px 5px 16px rgba(3, 48, 118, 0.08);
+  background: #dee2e6;
+}
