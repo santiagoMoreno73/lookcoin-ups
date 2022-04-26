@@ -6,7 +6,6 @@ export const initialState = {
 };
 
 export const reducer = (state, action) => {
-  console.log(action.payload);
   switch (action.type) {
     case "LOGIN":
       sessionStorage.setItem("LOGIN", action.payload);
