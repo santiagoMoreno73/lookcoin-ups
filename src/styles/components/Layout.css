@@ -19,7 +19,15 @@ h3 {
 
 .Main {
   display: flex;
-  padding: 2em 1.5em;
+  padding: 2em 18em;
   justify-content: center;
   height: 100%;
+}
+@media (min-width: 320px) and (max-width: 720px) {
+  .Main {
+    display: flex;
+    padding: 2em 1em;
+    justify-content: center;
+    height: 100%;
+  }
 }

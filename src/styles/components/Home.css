@@ -2,6 +2,10 @@ h5 {
   margin: 0px;
 }
 
+b {
+  color:#00e08e;
+}
+
 .button-coins {
   display: flex;
   align-items: center;
