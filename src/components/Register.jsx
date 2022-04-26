@@ -38,7 +38,6 @@ const Register = () => {
     setError("");
     createUserWithEmailAndPassword(auth, value.email, value.password)
       .then(({ data }) => {
-        console.log(data);
         navigate("/");
       })
       .catch((err) => {

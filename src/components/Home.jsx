@@ -16,6 +16,8 @@ import { MdGpsFixed } from "react-icons/md";
 
 // components
 import TableCoins from "./Shared/TableCoins";
+import LineGraphic from "./Shared/Graphics/LineGraphic";
+import BarGraphic from "./Shared/Graphics/BarGraphic";
 
 const Home = () => {
   const {
@@ -23,6 +25,7 @@ const Home = () => {
   } = useContext(AuthContext);
 
   const [coins, setCoins] = useState([]);
+  const [option, setOptions] = useState(0);
 
   useEffect(() => {
     ListCoins()
@@ -45,22 +48,48 @@ const Home = () => {
         />
       </div>
       <div className="d-flex justify-content-between mb-4">
-        <button className="button-coins">Coins</button>
-        <button className="button-last_statics">Last statistics</button>
+        <button
+          className={option === 0 ? "button-coins" : "button-last_statics"}
+          onClick={() => setOptions(0)}
+        >
+          Coins
+        </button>
+        <button
+          className={option === 1 ? "button-coins" : "button-last_statics"}
+          onClick={() => setOptions(1)}
+        >
+          Last statistics
+        </button>
       </div>
       <div className="d-flex align-items-center my-2">
         <MdGpsFixed style={{ color: "#00e08e", fontSize: "30px" }} />
-        <h5>Top Currencys</h5>
+        <h5>{option === 0 ? "Top Currencys" : "Ultimate Statistics"}</h5>
       </div>
       <Divider variant="fullWidth" />
-      <div className="card-market">
-        <h5 className="mb-2">State of the market</h5>
-        <p>
-          Total crypto market cap is $1.94, wich is up +2.96% over the last day.
-        </p>
-      </div>
 
-      <TableCoins coins={coins} />
+      {option === 0 ? (
+        <>
+          <div className="card-market">
+            <h5 className="mb-2">State of the market</h5>
+            <p>
+              Total crypto market cap is <b>$1.94</b>, wich is up <b>+2.96% </b>
+              over the last day.
+            </p>
+          </div>
+          <TableCoins coins={coins} />
+        </>
+      ) : (
+        <div className="row">
+          <div className="col-sm-12 col-md-6 d-flex align-items-center flex-column mt-3">
+            <p>General Balance</p>
+            <BarGraphic />
+          </div>
+          <div className="col-sm-12 col-md-6 d-flex align-items-center flex-column mt-3">
+            <p>Market History </p>
+            <LineGraphic />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
