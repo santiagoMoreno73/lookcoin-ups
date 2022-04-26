@@ -8,6 +8,13 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 
+// icons
+import {
+  MdMonetizationOn,
+  MdOutlineScatterPlot,
+  MdBarChart,
+} from "react-icons/md";
+
 const TableCoins = ({ coins }) => {
   return (
     <>
@@ -15,16 +22,29 @@ const TableCoins = ({ coins }) => {
         <Table size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell>#</TableCell>
-              <TableCell align="left">Coin</TableCell>
-              <TableCell align="left">MCAP</TableCell>
-              <TableCell align="right">Price</TableCell>
+              <TableCell align="center">#</TableCell>
+              <TableCell align="left">
+                <MdMonetizationOn
+                  style={{ color: "#ffa834", fontSize: "24px" }}
+                />
+                Coin
+              </TableCell>
+              <TableCell align="left">
+                <MdOutlineScatterPlot
+                  style={{ color: "#6334e3", fontSize: "24px" }}
+                />
+                MCAP
+              </TableCell>
+              <TableCell align="left">
+                <MdBarChart style={{ color: "#e93578", fontSize: "24px" }} />
+                Price
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {coins.map((coin, index) => (
               <TableRow key={index}>
-                <TableCell align="right">{index}</TableCell>
+                <TableCell align="center">{index + 1}</TableCell>
                 <TableCell component="th" scope="row">
                   {coin.name}
                 </TableCell>
@@ -42,7 +62,7 @@ const TableCoins = ({ coins }) => {
                     <p>{coin.name}</p>
                   </div>
                 </TableCell>
-                <TableCell align="right">{coin.current_price}</TableCell>
+                <TableCell align="left">{coin.current_price}</TableCell>
               </TableRow>
             ))}
           </TableBody>
