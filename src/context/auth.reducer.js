@@ -1,11 +1,13 @@
 const isBrowser = typeof window !== "undefined";
 
 export const initialState = {
-  user: isBrowser ? sessionStorage.getItem("LOGIN") : {},
+  user: isBrowser ? sessionStorage.getItem("LOGIN") : null,
+  userCoins: [],
   signup: null,
 };
 
 export const reducer = (state, action) => {
+  console.log(action.payload);
   switch (action.type) {
     case "LOGIN":
       sessionStorage.setItem("LOGIN", action.payload);
@@ -13,12 +15,6 @@ export const reducer = (state, action) => {
         ...state,
         user: action.payload,
       };
-
-    // case "USER_STATE":
-    //   return {
-    //     ...state,
-    //     user_state: action.payload,
-    //   };
 
     case "REGISTER":
       return {
@@ -31,6 +27,12 @@ export const reducer = (state, action) => {
         user: action.payload,
       };
 
+    case "FAVORITES":
+      localStorage.setItem("FAVORITES", action.payload);
+      return {
+        ...state,
+        userCoins: action.payload,
+      };
     default:
       return state;
   }

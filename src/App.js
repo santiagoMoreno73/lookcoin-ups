@@ -5,9 +5,12 @@ import Layout from "./Layout/Layout";
 // context
 import { AuthProvider } from "./context/auth.provider";
 
-import Login from "./components/Login";
-import Home from "./components/Home";
-import Register from "./components/Register";
+// pages
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import Register from "./pages/Register";
+import Error404 from "./pages/Error404";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -15,9 +18,11 @@ function App() {
       <AuthProvider>
         <Layout>
           <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/register" element={<Register />} />
+            <Route exact path="/" element={<Login />} />
+            <Route exact path="/profile" element={<Profile />} />
+            <Route exact path="/home" element={<Home />} />
+            <Route exact path="/register" element={<Register />} />
+            <Route path="*" element={<Error404 />} />
           </Routes>
         </Layout>
       </AuthProvider>
