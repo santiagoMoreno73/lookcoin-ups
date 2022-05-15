@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 
 //ui
 import Table from "@material-ui/core/Table";
@@ -7,15 +7,36 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import Checkbox from "@mui/material/Checkbox";
+
+// context
+import { AuthContext } from "../../context/auth.provider";
 
 // icons
 import {
   MdMonetizationOn,
   MdOutlineScatterPlot,
   MdBarChart,
+  MdFavoriteBorder,
+  MdFavorite,
 } from "react-icons/md";
 
 const TableCoins = ({ coins }) => {
+  const {
+    state: { userCoins },
+    dispatch,
+  } = useContext(AuthContext);
+
+  const addFavorites = (coin) => {
+    console.log(coin);
+    dispatch({
+      type: "FAVORITES",
+      payload: coin,
+    });
+  };
+
+  console.log("aqui:", userCoins);
+
   return (
     <>
       <TableContainer>
@@ -44,7 +65,14 @@ const TableCoins = ({ coins }) => {
           <TableBody>
             {coins.map((coin, index) => (
               <TableRow key={index}>
-                <TableCell align="center">{index + 1}</TableCell>
+                <TableCell align="center">
+                  {" "}
+                  <Checkbox
+                    onClick={() => addFavorites(coin)}
+                    icon={<MdFavoriteBorder />}
+                    checkedIcon={<MdFavorite />}
+                  />
+                </TableCell>
                 <TableCell component="th" scope="row">
                   {coin.name}
                 </TableCell>
@@ -57,7 +85,7 @@ const TableCoins = ({ coins }) => {
                         margin: "0em 2em 0em 0em",
                       }}
                       src={coin.image}
-                      alt="Coin_image"
+                      alt="coin_image"
                     />
                     <p>{coin.name}</p>
                   </div>
