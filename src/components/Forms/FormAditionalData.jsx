@@ -8,6 +8,7 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
+import FormHelperText from "@mui/material/FormHelperText";
 
 // icons
 import { AiOutlineArrowLeft } from "react-icons/ai";
@@ -56,7 +57,13 @@ const FormAditionalData = ({
         <div className="col-12">
           <p className="my-1 text-color">Name</p>
           <Controller
-            rules={{ required: true }}
+            rules={{
+              required: true,
+              pattern: {
+                value: /^[a-zA-Z]{2,254}$/i,
+                message: "You can not write numbers in name",
+              },
+            }}
             control={control}
             name="name"
             render={({ field }) => (
@@ -64,6 +71,7 @@ const FormAditionalData = ({
                 <TextField
                   {...field}
                   id="user_name"
+                  type="text"
                   error={errors.name}
                   autoComplete="current-password"
                   variant="standard"
@@ -71,25 +79,35 @@ const FormAditionalData = ({
               </FormControl>
             )}
           />
-
+          {errors.name && (
+            <FormHelperText error>{errors.name.message}</FormHelperText>
+          )}
           <p className="my-1 text-color">Lastname</p>
           <Controller
-            rules={{ required: true }}
+            rules={{
+              required: true,
+              pattern: {
+                value: /^[a-zA-Z]{2,254}$/i,
+                message: "You can not write numbers in last last name",
+              },
+            }}
             control={control}
-            name="Lastname"
+            name="lastname"
             render={({ field }) => (
               <FormControl fullWidth>
                 <TextField
                   {...field}
                   id="user_Lastname"
+                  type="text"
                   error={errors.Lastname}
-                  autoComplete="current-password"
                   variant="standard"
                 />
               </FormControl>
             )}
           />
-
+          {errors.lastname && (
+            <FormHelperText error>{errors.lastname.message}</FormHelperText>
+          )}
           <p className="my-1 text-color">Birthday</p>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <MobileDatePicker
@@ -112,7 +130,6 @@ const FormAditionalData = ({
                   {...field}
                   id="user_address"
                   error={errors.address}
-                  autoComplete="current-password"
                   variant="standard"
                 />
               </FormControl>

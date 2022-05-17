@@ -39,7 +39,7 @@ const data = [
 
 const BarGraphic = () => {
   return (
-    <BarChart width={300} height={305} data={data}>
+    <BarChart width={300} height={280} data={data}>
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
       <YAxis />

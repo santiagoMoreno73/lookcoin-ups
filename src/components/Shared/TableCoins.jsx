@@ -23,19 +23,18 @@ import {
 
 const TableCoins = ({ coins }) => {
   const {
-    state: { userCoins },
+    state: { user, userCoins },
     dispatch,
   } = useContext(AuthContext);
 
   const addFavorites = (coin) => {
-    console.log(coin);
     dispatch({
       type: "FAVORITES",
       payload: coin,
     });
   };
 
-  console.log("aqui:", userCoins);
+  console.log(userCoins);
 
   return (
     <>
