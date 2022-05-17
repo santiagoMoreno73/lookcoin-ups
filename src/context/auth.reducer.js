@@ -7,7 +7,6 @@ export const initialState = {
 };
 
 export const reducer = (state, action) => {
-  console.log(action.payload);
   switch (action.type) {
     case "LOGIN":
       sessionStorage.setItem("LOGIN", action.payload);
@@ -31,7 +30,7 @@ export const reducer = (state, action) => {
       localStorage.setItem("FAVORITES", action.payload);
       return {
         ...state,
-        userCoins: action.payload,
+        userCoins: [...state.userCoins, action.payload],
       };
     default:
       return state;
