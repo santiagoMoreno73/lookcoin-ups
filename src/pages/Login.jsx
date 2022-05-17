@@ -12,6 +12,9 @@ import { MdAttachMoney } from "react-icons/md";
 // ui
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
+import FormHelperText from "@mui/material/FormHelperText";
+
+// firebase
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 // context
@@ -62,7 +65,13 @@ const FormSignIn = () => {
           <div className="col-12">
             <p className="my-1 text-color">Email</p>
             <Controller
-              rules={{ required: true }}
+              rules={{
+                required: true,
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "email invalido",
+                },
+              }}
               control={control}
               name="user_email"
               error={errors.email}
@@ -78,6 +87,9 @@ const FormSignIn = () => {
                 </FormControl>
               )}
             />
+            {errors.name && (
+              <FormHelperText error>{errors.name.message}</FormHelperText>
+            )}
           </div>
           <div className="col-12 mt-4">
             <p className="my-1 text-color">Password</p>
@@ -93,7 +105,7 @@ const FormSignIn = () => {
                     id="user_password"
                     error={errors.password}
                     autoComplete="current-password"
-                    type={"password"}
+                    type="password"
                     variant="standard"
                   />
                 </FormControl>

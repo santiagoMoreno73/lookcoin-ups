@@ -18,6 +18,7 @@ import { MdGpsFixed } from "react-icons/md";
 import TableCoins from "../components/Shared/TableCoins";
 import LineGraphic from "../components/Shared/Graphics/LineGraphic";
 import BarGraphic from "../components/Shared/Graphics/BarGraphic";
+import GeneralMarket from "../components/Shared/Graphics/GeneralMarket";
 
 const Home = () => {
   const {
@@ -36,7 +37,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container h-100">
       <h3>Home</h3>
       <h5>Welcome {user.email}</h5>
       <div className="col-12 d-flex mb-5 justify-content-center mt-4">
@@ -79,13 +80,16 @@ const Home = () => {
           <TableCoins coins={coins} />
         </>
       ) : (
-        <div className="row">
-          <div className="col-sm-12 col-md-6 d-flex align-items-center flex-column mt-3">
-            <p>General Balance</p>
+        <div className="d-flex flex-column align-items-center justify-content-center">
+          <div className="d-flex align-items-center">
+            <GeneralMarket />
+          </div>
+          <p>General Balance</p>
+          <div className="d-flex align-items-center">
             <BarGraphic />
           </div>
-          <div className="col-sm-12 col-md-6 d-flex align-items-center flex-column mt-3">
-            <p>Market History </p>
+          <p>Market History </p>
+          <div className="d-flex align-items-center mb-5">
             <LineGraphic />
           </div>
         </div>
